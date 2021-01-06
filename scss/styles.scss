@@ -1,0 +1,345 @@
+@import "custom";
+
+%cardButton {
+    outline: none;
+    background: transparent;
+    color: #ccc;
+    letter-spacing: 0.03rem;
+    font-weight: 100;
+
+    &:hover {
+        color: white;
+    }
+}
+
+%overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    z-index: 2;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+// Media Queries 
+
+@mixin mQ($min) {
+    @media (min-width: $min) {
+        @content;
+    }
+}
+
+// Navbar
+
+#myNavParent {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    z-index: 5;
+
+    .navbar-brand {
+        font-family: 'Dosis', sans-serif;
+        letter-spacing: 0.05rem;
+        font-weight: bold;
+    }
+
+    .redDash {
+        font-weight: bold;
+        margin-right: 0.3rem;
+    }
+
+    a {
+        &:hover {
+            color: $red;
+        }
+    }
+}
+
+// Main Section
+
+#main {
+    font-family: "Dosis", sans-serif;
+    position: relative;
+    height: 100vh;
+    background: url("../imgs/main.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    .overlay {
+        @extend %overlay;
+    }
+
+    .main-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        z-index: 3;
+    }
+
+    @include mQ(992px) {
+        .main-content h1 {
+            font-size: 4rem
+        }
+    }
+}
+
+// Album Section
+
+#album {
+    h2.title {
+        font-family: "Dosis", sans-serif;
+    }
+
+    table td {
+        line-height: 2;
+
+        &:first-child {
+            font-family: "Dosis", sans-serif;
+        }
+    }
+
+    .purchase-btns {
+        cursor: pointer;
+
+        &:hover {
+            color: white;
+        }
+    }
+}
+
+// Songs Section
+
+#songs {
+
+    p.lyrics {
+        white-space: pre-wrap;
+    }
+
+    .card {
+        border: 1px solid #555;
+        border-collapse: collapse;
+        font-family: "Dosis", sans-serif;
+        border-radius: 0 !important;
+        cursor: pointer;
+
+        i {
+            margin-right: 0.5rem;
+        }
+
+        p {
+            padding-left: 22px;
+        }
+
+        &:hover {
+            background: black !important;
+        }
+    }
+
+    .lyrics {
+        @extend %cardButton;
+        border: 2px solid $red;
+        margin-left: 22px;
+    }
+
+    .download {
+        @extend %cardButton;
+        border: 2px solid rgba(255,255,255,0.7);    
+    }
+}
+
+// Concert Section
+
+#concert {
+    position: relative;
+    min-height: 500px;
+    height: auto;
+    background: url("../imgs/concert.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #ccc;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.6);
+        z-index: 2;
+    }
+
+    .row {
+        position: relative;
+        z-index: 3;
+    }
+
+    h2.title, h4, button {
+        font-family: "Dosis", sans-serif;
+    }
+
+    .purchase-btns {
+        cursor: pointer;
+        color: #ccc;
+
+        &:hover {
+            color: white;
+        }
+    }
+
+    .location {
+        background: rgba(0,0,0,1);
+    }
+
+    .lyrics {
+        @extend %cardButton;
+        border: 2px solid $red;
+
+        i {
+            margin-right: 0.3rem;
+        }
+    }
+
+    @include mQ(992px) {
+        .concert-main {
+            max-width: 550px;
+        }
+    
+        .concert-content-b {
+            min-width: 575px;
+        }
+    }
+}
+
+// Discography
+
+#discography {
+    font-family: "Dosis", sans-serif;
+
+    p {
+        cursor: pointer;
+
+        i {
+            margin-left: 0.2rem;
+        }
+    }
+
+    .purchase-btns {
+        cursor: pointer;
+
+        &:hover {
+            color: white;
+        }
+    }
+}
+
+// Tour Section
+
+#tour {
+    min-height: 500px;
+    height: auto;
+    position: relative;
+    background: url("../imgs/tour.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    font-family: Dosis , sans-serif;
+
+    .overlay {
+        @extend %overlay;
+        top: 0;
+        left: 0;
+        background: rgba(0,0,0,0.7);
+    }
+
+    .tour-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 3;
+        width: 100%;
+        height: 100%;
+    }
+
+    p {
+        letter-spacing: 0.02rem;
+    }
+}
+
+// Band Members
+
+#band {
+    font-family: "Dosis", sans-serif;
+}
+
+// Upcoming Tour
+
+#upcoming-tours {
+    font-family: "Dosis", sans-serif;
+
+    %tour-buttons {
+        background: transparent;
+        letter-spacing: 0.03rem;
+        padding: 0.3rem 0.5rem;
+        outline: none;
+        color: #ccc;
+        margin-right: 0.7rem;
+
+        &:hover {
+            color: white;
+        }
+    }
+
+    .tour {
+        padding: 1rem 0.5rem;
+        border-bottom: 1px solid black;
+    }
+    .vip {
+        border: 2px solid $red;
+        @extend %tour-buttons;
+        
+        i {
+            margin-right: 0.3rem;
+        }
+    }
+
+    .normal {
+        border: 2px solid #ccc;
+        @extend %tour-buttons;
+
+        i {
+            margin-right: 0.3rem;
+        }
+    }
+}
+
+// Blog Section
+
+#blog {
+    font-family: "Dosis", sans-serif;
+}
+
+// Touch Section
+
+#touch {
+    font-family: "Dosis", sans-serif;
+}
+
